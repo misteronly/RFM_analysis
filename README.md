@@ -1,5 +1,5 @@
-# RFM_analysis 
-![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
+# RFM_Анализ. Что это и с чем его едят?
+![RFM_segments](https://github.com/misteronly/RFM_analysis/blob/main/rfm_picture.png)
 ### :grey_question: Кто наши лучшие клиенты?
 ### :grey_question: Кто из клиентов на грани потери?
 ### :grey_question: На какие сегменты можно разделить наших покупателей?
