@@ -1,5 +1,5 @@
 # RFM_analysis 
-![ff](https://www.google.com/search?q=rfm+%D1%82%D1%84%D0%B4%D0%BD%D1%8B%D1%88%D1%8B&tbm=isch#imgrc=kGVcnseGwyDJXM)
+![Image alt](https://github.com/{username}/{repository}/raw/{branch}/{path}/image.png)
 ### :grey_question: Кто наши лучшие клиенты?
 ### :grey_question: Кто из клиентов на грани потери?
 ### :grey_question: На какие сегменты можно разделить наших покупателей?
