@@ -53,7 +53,7 @@ perc_rfm as (
     (select percentile_cont(0.33) within group(order by frequency) as f_perc_33 from group_dataset),
     (select percentile_cont(0.66) within group(order by frequency) as f_perc_66 from group_dataset),
     (select percentile_cont(0.33) within group(order by monetory) as m_perc_33 from group_dataset),
-    (select ROUND(CAST(percentile_cont(0.66) within group(order by monetory) as INT), 2) as m_perc_66 from group_dataset)
+    (select (CAST(percentile_cont(0.66) within group(order by monetory) as INT)) as m_perc_66 from group_dataset)
   from
   	group_dataset
 ),
