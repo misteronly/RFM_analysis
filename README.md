@@ -58,25 +58,25 @@ perc_rfm as (
   	group_dataset
 ),
 /*Производим деление клиентов на сегменты:
-Чем меньше давность заказа(recency), тем выше оценка. Для частоты(frequency) и
-суммы заказов(monetory) наоборот: высокие значения соотвествуют низким резульататам*/
+Чем меньше давность заказа(recency), тем выше оценка.Для частоты(frequency) и
+суммы заказов(monetory) соотвественно: высокие значения соотвествуют значительным результатам*/
 segment_rfm as (
   select 
   	clients,
   	recency,
   	case 
-  		when recency < r_perc_33 then 1
-  		when recency < r_perc_66 then 2 else 3
+  		when recency < r_perc_33 then 3
+  		when recency < r_perc_66 then 2 else 1
   	end as R,
   	frequency,
   	case 
-  		when frequency <= f_perc_33 then 3
-  		when frequency <= f_perc_66 then 2 else 1
+  		when frequency <= f_perc_33 then 1
+  		when frequency <= f_perc_66 then 2 else 3
   	end as F,
   	monetory,
   	case 
-  		when monetory <= m_perc_33 then 3
-  		when monetory <= m_perc_66 then 2 else 1
+  		when monetory <= m_perc_33 then 1
+  		when monetory <= m_perc_66 then 2 else 3
   	end as M 
   from
   	perc_rfm
