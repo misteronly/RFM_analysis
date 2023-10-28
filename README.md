@@ -92,19 +92,32 @@ union_rfm as (
 ),
 /*Группируем клиентов на 8 основных сегментов*/
 groups_rfm as (
-  select 
+ select 
   	cnt_clients,
   	rfm_full,
   	case 
   		when rfm_full in ('333') then 'VIP'
-  		when rfm_full in ('332','331', '323') then 'Чемпионы'
-		when rfm_full in ('322', '321') then 'Лояльные'
-		when rfm_full in ('313', '312', '311') then 'Новички'
-		when rfm_full in ('223', '222', '231', '232', '233') then 'Требуют внимания'		
-		when rfm_full in ('213', '212', '221', '211') then 'Спящие'
-		when rfm_full in ('113', '132', '131') then 'В зоне риска'
-		when rfm_full in ('123', '122', '121') then 'На грани'
-		when rfm_full in ('133', '112', '111') then 'Потерянные' 			
+  		when rfm_full in ('332', '323') then 'Чемпионы - любители'
+		when rfm_full in ('331') then 'Чемпионы - новички'
+		when rfm_full in ('322') then 'Лояльные постоянники'
+		when rfm_full in ('321') then 'Лояльные прохожие'		
+		when rfm_full in ('313') then 'Новички транжиры'
+		when rfm_full in ('312', '311') then 'Новички экономисты'
+		when rfm_full in ('233') then 'Будующие чемпионы'
+		when rfm_full in ('232','231') then 'Примерные семьянины' 	
+		when rfm_full in ('223','222') then 'Статистические среднячки' 
+		when rfm_full in ('221') then 'Любители гематогенов' 
+		when rfm_full in ('213') then 'Любители по крупному' 
+		when rfm_full in ('212','211') then 'Любители по мелкому'
+		when rfm_full in ('133') then 'Потерянные фанаты' 
+		when rfm_full in ('132') then 'Подающие надежды' 
+		when rfm_full in ('131') then 'Придирчивые'
+		when rfm_full in ('123') then 'Бывшие шопоголики'
+		when rfm_full in ('122') then 'Залетные птицы'
+		when rfm_full in ('121') then 'Из другого района'
+		when rfm_full in ('113') then 'Ожидающие скидок'
+		when rfm_full in ('112') then 'Случайные прохожие'
+		when rfm_full in ('111') then 'На скамейке запасных' 
   	end as segment_rfm
   from
     union_rfm
@@ -122,7 +135,7 @@ total_clients as (
 /*Считаем долю в процентах каждого сегмента*/
 select 
 	segment_rfm,
-	ROUND(clients /  SUM(clients) over() * 100, 0) as percent_rfm
+	ROUND(clients /  SUM(clients) over() * 100, 1) as percent_rfm
 from
 	total_clients
 order by percent_rfm desc
